@@ -1,11 +1,23 @@
 body{
     margin: 0%;
+    color: white;
+    font-family: pixel, monospace;
+    text-align: center;
 }
 
 #zonaJuego{
     position: relative;
     background-color: black;
     height: 100vh;
+    overflow: hidden;
+}
+
+.pelota{
+    background-color: white;
+    width: 30px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: absolute;
 }
 
 .paleta{
@@ -15,10 +27,30 @@ body{
     background-color: white;
 }
 
+#tablero{
+    color: white;
+    text-align: center;
+    font-size: 5rem;
+}
+
 #zonaJuego .paleta:nth-of-type(1){
     left: 0;
 }
 
 #zonaJuego .paleta:nth-of-type(2){
     right: 0;
+}
+
+#mensaje{
+    position: relative;
+    top: 90%;
+}
+
+.ocultarMensaje{
+    opacity: 0;
+}
+
+@font-face {
+    font-family: "pixel";
+    src: url(./LLPIXEL3.ttf);
 }
