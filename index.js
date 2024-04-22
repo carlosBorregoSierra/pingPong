@@ -1,4 +1,5 @@
 const zonaJuego = document.getElementById("zonaJuego");
+const mensajeElement = document.getElementById("mensaje");
 
 class Pelota{
     x;
@@ -13,7 +14,7 @@ class Pelota{
         this.element.classList = "pelota";
         zonaJuego.appendChild(this.element);
         this.resetPosicion();
-        
+        mensajeElement.classList.toggle("ocultarMensaje", false);//mensaje de inicar visible
     }
     resetPosicion(){
         this.x = document.body.clientWidth/2;
@@ -23,11 +24,12 @@ class Pelota{
     }
     mover(){
         if(!this.movimiento){
+            mensajeElement.classList.toggle("ocultarMensaje", true );
             this.movimiento = setInterval(()=>{
                 //Movimiento Horizontal
                 this.x += this.dx;
 
-                //Choque con paletas
+                //Choque de pelota con paletas
                     //paleta Jugador1
                     if(this.x < 5+jugador1.ancho &&  //|| this.x > document.body.clientWidth - this.ancho*2.5){//limites
                         this.y + this.ancho > jugador1.y &&
@@ -47,7 +49,10 @@ class Pelota{
                 //meter punto
                 if(this.x < 5  || this.x > document.body.clientWidth - this.ancho*2.5){
                 tablero.sumarPunto(this.x<100?2:1)
-                this.eliminar();
+                mensajeElement.classList.textContent = 'Presiona "Espacio" para continuar';
+                console.log(mensajeElement.classList.textContent);
+                mensajeElement.classList.toggle("ocultarMensaje",false); //muestre mensaje al anotar punto
+                //this.eliminar();
                 }
                 this.element.style.left = this.x+"px";
 
@@ -141,6 +146,7 @@ class Tablero{
         pelota.eliminar();
         jugador1.resetPosicion();
         jugador2.resetPosicion();
+        console.log(mensajeElement);
         if(!pelota)
         pelota = new Pelota();
     }
